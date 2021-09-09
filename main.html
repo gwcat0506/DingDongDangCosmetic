@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>♪ 딩동댕 코스매틱 ♪</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="author" content="colorlib.com">
+        <link href="https://fonts.googleapis.com/css?family=Poppins:400,800" rel="stylesheet" />
+        <link href="css/main.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div class="container">
+            <div class="main_section">
+            <div id ="item_id" class="search_result_title">
+                검색 결과
+            </div>
+            <div class="search_result_body">
+                <div class="section1">
+                    <div id ="item_name" style="font-size: 30px;">상품명: OO</div>
+                    <img src="images/item1.png" alt="Search Item Image">
+                    <button id="tel_link1"><a >최저가 알림 받기⏰</a></button>
+                    <div id ="item_price" >올리브영 정상가 : 15,000원</div>
+                    <div id ="sales_price">현재 가격 : 13,500원 </div>
+                    <div>현재 할인율 : 22% </div>
+                    <div>역대 최저가 : 22400원 </div>
+                    <div>리뷰 개수: 2340개 </div>
+                    <div id ="item_link">구매링크: <a id="buy_link" href="https://www.oliveyoung.co.kr/store/main/main.do?oy=0"><a></div>
+                    
+                </div>
+                <div class="section2">
+                    <img src="images/graph2.png" alt="Search Item Graph Image">
+                    <div> 역대 최저가 : 22400원 </div>
+                    <div> 최근 3개월 내 최저가: 22400원 </div>
+                    <div><button id="tel_link2">26000원 이하일 때 텔레그램 알림 받기⏰</button></div>
+                    <div><button id="tel_link3">32% 이상 할인시 텔레그램 알림 받기⏰</button></div>
+                
+                </div>
+            </div>
+            <script>    
+            var prevData = localStorage.getItem("queryResult");
+            console.log(prevData);
+            var queries = prevData.split("\n");
+            console.log(queries);
+            var quries_json = [];
+            for (var i = 0; i < queries.length; i++) {
+                // var tempStr = queries[i].replace(/'/g, '"');
+                // tempStr = tempStr.replace("Null", '"NUll"');
+                // quries_json.push(JSON.parse(tempStr));
+                quries_json.push(JSON.parse(queries[i].replace(/'/g, '"')));
+            }
+            console.log(quries_json);
+            for (var i = 0; i < quries_json.length; i++) {
+                var json_data = quries_json[i];
+                console.log(json_data);
+                var item_id = document.getElementById("item_id");
+                var item_name = document.getElementById("item_name");
+                var item_price = document.getElementById("item_price");
+                var item_link = document.getElementById("item_link");
+                var item_sales_price = document.getElementById("sales_price");
+                var item_sales_price2 = document.getElementById("sales_price");
+
+                item_id.setAttribute("title", json_data.id);
+                item_name.setAttribute("title", json_data.text);
+                item_price.setAttribute("title", json_data.price);
+                item_link.setAttribute("title", json_data.link);
+                item_link.setAttribute("title", json_data.sales_price);
+                item_link.setAttribute("title", json_data.sales_price2);
+
+                item_id.innerHTML = json_data.text;
+                item_name.innerHTML = json_data.text;
+                item_price.innerHTML = "올리브영 정상가 : " + json_data.price;
+                item_link.innerHTML = "<a id=\"buy_link\" href=\"" + json_data.link + "\">구매링크<a>";
+                sales_price.innerHTML = "현재 가격 : " + json_data.sales_price;
+
+                var telegram_button_1 = document.getElementById("tel_link1");
+                var telegram_button_2 = document.getElementById("tel_link2");
+                var telegram_button_3 = document.getElementById("tel_link3");
+
+                telegram_button_1.innerHTML = "<a class=\"telegram_link\" style=\"font-size:25px;\" href=\"https://t.me/PriceLookupBot?start=" + json_data.id + "\">최저가 알림 받기⏰<a>"
+                telegram_button_2.innerHTML = "<a class=\"telegram_link\" style=\"font-size:25px;\" href=\"https://t.me/PriceLookupBot?start=" + json_data.id + "_i26000\">26000원 이하일 때 텔레그램 알림 받기⏰<a>"
+                telegram_button_3.innerHTML = "<a class=\"telegram_link\" style=\"font-size:25px;\" href=\"https://t.me/PriceLookupBot?start=" + json_data.id + "_f0.32\">32% 이상 할인시 텔레그램 알림 받기⏰<a>"
+            }
+        </script>
+        </div>
+    </div>
+    </div>
+    </body>
+</html>

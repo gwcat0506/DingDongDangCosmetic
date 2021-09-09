@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>♪ 딩동댕 코스매틱 ♪</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="author" content="colorlib.com">
+        <link href="https://fonts.googleapis.com/css?family=Poppins:400,800" rel="stylesheet" />
+        <link href="css/sub.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div class="container">
+            <div class="main_section">
+                <div class="search_result_title">
+                    <div id="search_area">🔎 OO의 검색결과..</div>
+                </div>
+                <div class="search_result_body">
+                    <div>검색결과가 너무 많습니다😅</div>
+                    <div id="hocksi">혹시 이 상품을 찾으시나요..?</div>
+                    <div id="searched_items">
+                    </div>
+                    <script type="text/javascript">
+                        var prevData = localStorage.getItem("queryResult");
+                        // var prevSearch = localStorage.getItem("searchText");
+                        console.log(prevData);
+                        var queries = prevData.split("\n");
+                        var quries_json = [];
+                        console.log(queries);
+                        for (var i = 0; i < queries.length - 1; i++) {
+                            // console.log(queries[i]);
+                            // var tempStr = queries[i].replace(/'/g, '"');
+                            // console.log(tempStr);
+                            // tempStr = tempStr.replace("None", '"NULL"');
+                            // quries_json.push(JSON.parse(tempStr));
+                            quries_json.push(JSON.parse(queries[i].replace(/'/g, '"')));
+                        }
+                        console.log(queries[0].text);
+                        console.log(quries_json[0]);
+                        console.log(quries_json[0].text);
+                        for (var i = 0; i < quries_json.length; i++) {
+                            var json_data = quries_json[i];
+
+                            var tag = document.createElement("div");
+                            var tempPrice;
+                            if ( parseInt(json_data.sales_price) == 0 ) {
+                                tempPrice = json_data.price;
+                            } else {
+                                tempPrice = json_data.sales_price;
+                            }
+                            var text = document.createTextNode("[" + tempPrice + "원] " + json_data.text);
+                            tag.setAttribute("id", json_data.id);
+                            tag.classList.add("item");
+                            tag.setAttribute("title", queries[i]);
+                            tag.appendChild(text);
+                            var element = document.getElementById("searched_items");
+                            element.appendChild(tag);
+                        }
+
+                        var searchAreaElem = document.getElementById("search_area");
+                        searchAreaElem.innerHTML = "🔎 검색결과.."
+
+                        var items_elements = document.getElementsByClassName("item");
+                        console.log(items_elements[0].getAttribute("id"));
+                        console.log(items_elements[0].getAttribute("title"));
+                        console.log(items_elements);
+                        for (var i = 0; i < items_elements.length; i++) {
+                            items_elements[i].addEventListener('click', function(event){
+                                localStorage.clear();
+                                localStorage.setItem("queryResult", event.currentTarget.getAttribute("title"));
+                                console.log(event.currentTarget);
+                                console.log(localStorage.getItem("queryResult"));
+                                window.location.href = "C:/Users/eunho/Desktop/pricingSytem/main.html";
+                            });
+                        }
+                    </script>
+                </div>
+        </div>
+        </div>
+    </body>
+</html>

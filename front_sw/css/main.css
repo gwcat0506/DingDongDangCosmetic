@@ -1,0 +1,134 @@
+﻿
+
+body {
+    background-color: rgb(216, 248, 195);
+    }
+.container {
+    padding-top: 100px;
+    padding-bottom: 70px;
+    display: grid;
+    grid-template-columns: 0.2fr 2.6fr 0.2fr;
+    grid-template-rows: 0.3fr 0.5fr 2.7fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        ". main_section ."
+        ". main_section ."
+        ". main_section .";
+}
+
+.main_section {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 0.3fr 2.5fr 0.2fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        "search_result_title search_result_title search_result_title"
+        "search_result_body search_result_body search_result_body"
+        "search_result_body search_result_body search_result_body";
+    grid-area: main_section;
+}
+
+
+.search_result_title { 
+    grid-area: search_result_title;
+    padding-top: 50px; 
+    padding-bottom: 50px;
+    background-color: white;}
+        
+.search_result_title div{
+    font-size: 50px;
+    font-weight: 1000;
+    text-align: center;
+}
+
+.search_result_body {
+    background-color: beige;
+    display: grid;
+    grid-template-columns: 1fr 0.5fr 1.5fr;
+    /* grid-template-rows: 1fr 1fr 1fr; */
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        "section1 section1 section2"
+        "section1 section1 section2"
+        "section1 section1 section2";
+        grid-area: search_result_body;
+}
+
+.section1 { grid-area: section1; }
+
+.section2 { grid-area: section2; }
+
+.section1 , .section2{
+    font-size: 25px;
+    /* color: #fff; */
+    font-weight: 1000;
+    text-align: center;
+}
+.section1 img{
+    padding: 10px;
+    margin:auto;
+    display:block;
+    width:300px;
+    height:auto;
+}
+.section2 img{
+    padding: 10px;
+    margin:auto;
+    display:block;
+    width:700px;
+    height:auto;
+}
+
+    
+/* 버튼 CSS */
+button { 
+    /* width:100px; */
+    margin:auto;
+    display:block;
+    
+}
+
+.search_result_body div {
+    /* background-color: rgb(226, 206, 206); */
+    padding: 20px;
+}
+button{
+    background:#ff5353;
+    color:#fff;
+    border:none;
+    position:relative;
+    height:60px;
+    font-size:1.6em;
+    padding:0 2em;
+    cursor:pointer;
+    transition:800ms ease all;
+    outline:none;
+}
+button:hover{
+    background:#fff;
+    color:#ff5353;
+}
+button:before,button:after{
+    content:'';
+    position:absolute;
+    top:0;
+    right:0;
+    height:2px;
+    width:0;
+    background: #ff5353;
+    transition:400ms ease all;
+}
+button:after{
+    right:inherit;
+    top:inherit;
+    left:0;
+    bottom:0;
+}
+button:hover:before,button:hover:after{
+    width:100%;
+    transition:800ms ease all;
+}
+

@@ -1,0 +1,63 @@
+﻿body {
+    background-color: rgb(216, 248, 195);
+    }
+.container {
+    padding-top: 50px;
+    display: grid;
+    gap: 0px 0px;
+    grid-template-areas:
+        ". main_section ."
+        ". main_section ."
+        ". main_section .";
+}
+
+.main_section {
+        display: grid;
+        gap: 0px 0px;
+        grid-template-areas:
+            "search_result_title search_result_title search_result_title"
+            "search_result_body search_result_body search_result_body"
+            "search_result_body search_result_body search_result_body";
+        grid-area: main_section;
+}
+
+.search_result_title { 
+    grid-area: search_result_title;
+    padding-top: 30px; 
+    padding-bottom: 30px;
+    background-color: white; }
+.search_result_title div{
+    font-size: 30px;
+    font-weight: 1000;
+    text-align: center;
+}
+
+.search_result_body {
+    font-size: 25px;
+    font-weight: 1000;
+    text-align: center;
+    background-color: beige;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        ". . ."
+        ". . ."
+        ". . .";
+    grid-area: search_result_body;
+}
+.search_result_body div{
+    padding: 10px;
+    font-size: 20px;
+    font-weight: 1000;
+    text-align: center;
+}
+.search_result_body div {
+    padding: 10px;
+    font-size: 20px;
+    font-weight: 1000;
+    text-align: center;
+}
+#hocksi{
+    color: blue;
+    font-size: 15px;
+}
